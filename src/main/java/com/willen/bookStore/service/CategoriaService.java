@@ -1,6 +1,7 @@
 package com.willen.bookStore.service;
 
 import com.willen.bookStore.domain.Categoria;
+import com.willen.bookStore.dtos.CategoriaDTO;
 import com.willen.bookStore.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,13 @@ public class CategoriaService {
     public Categoria create(Categoria obj) {
         obj.setId(null); // derruba id enviado pelo cliente. Quem define o id é o banco
         return  repository.save(obj);
+    }
+
+    public Categoria update(Integer id, CategoriaDTO objDTO) {
+        Categoria obj = findById(id);
+        obj.setNome(objDTO.getNome());
+        obj.setDescricao(objDTO.getDescricao());
+
+        return repository.save(obj);
     }
 }
