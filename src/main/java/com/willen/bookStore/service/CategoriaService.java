@@ -22,4 +22,9 @@ public class CategoriaService {
     public List<Categoria> findAll() {
         return repository.findAll();
     }
+
+    public Categoria create(Categoria obj) {
+        obj.setId(null); // derruba id enviado pelo cliente. Quem define o id é o banco
+        return  repository.save(obj);
+    }
 }
