@@ -6,6 +6,7 @@ import com.willen.bookStore.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,9 +15,18 @@ public class LivroService {
     @Autowired // Instância gerenciada pelo spring - cria, gerencia, destroi
     LivroRepository repository;
 
+    @Autowired
+    private CategoriaService categoriaService;
+
     public Livro findById(Integer id) {
         Optional<Livro> obj = repository.findById(id);
 
         return obj.orElseThrow( () -> new ObjectNotFoundException("Livro não encontrado, id: " + id));
+    }
+
+    public List<Livro> findAll(Integer idCat) {
+         categoriaService.findById(idCat); // busca categoria, lança excessão
+
+        return repository.findAllByCategoria(idCat);
     }
 }
