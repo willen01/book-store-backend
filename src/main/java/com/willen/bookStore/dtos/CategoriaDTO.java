@@ -1,13 +1,22 @@
 package com.willen.bookStore.dtos;
 
 import com.willen.bookStore.domain.Categoria;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 public class CategoriaDTO implements Serializable {
 
     private Integer id;
+
+    @NotEmpty(message = "Campo NOME é obrigatório")
+    @Length(min = 3, max = 50, message = "O campo NOME deve ter entre 3 e 50 caracteres")
     private String nome;
+
+
+    @NotEmpty(message = "Campo DESCRICAO é obrigatório")
+    @Length(min = 10, max = 200, message = "O campo DESCRICAO deve ter entre 10 e 200 caracteres")
     private String descricao;
 
     public CategoriaDTO() {
