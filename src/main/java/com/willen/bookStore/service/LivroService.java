@@ -1,5 +1,6 @@
 package com.willen.bookStore.service;
 
+import com.willen.bookStore.domain.Categoria;
 import com.willen.bookStore.domain.Livro;
 import com.willen.bookStore.repositories.LivroRepository;
 import com.willen.bookStore.service.exceptions.ObjectNotFoundException;
@@ -41,5 +42,12 @@ public class LivroService {
         newobj.setTitulo(obj.getTitulo());
         newobj.setNome_autor(obj.getNome_autor());
         newobj.setTexto(obj.getTexto());
+    }
+
+    public Livro create(Integer idCat, Livro obj) {
+        obj.setId(null); // id é responsabilidade do banco
+        Categoria cat = categoriaService.findById(idCat); //categoria existente ou não
+        obj.setCategoria(cat);
+        return repository.save(obj);
     }
 }
