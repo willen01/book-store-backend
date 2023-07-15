@@ -32,4 +32,16 @@ public class LivroResource {
         return ResponseEntity.ok().body(livroDTO);
         // 8080/livros?categoria=1
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Livro> update(@PathVariable Integer id, @RequestBody Livro obj) {
+        Livro newobj = service.update(id, obj);
+        return ResponseEntity.ok().body(newobj);
+    }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Livro> updatePath(@PathVariable Integer id, @RequestBody Livro obj) {
+        Livro newobj = service.update(id, obj);
+        return ResponseEntity.ok().body(newobj);
+    }
 }
