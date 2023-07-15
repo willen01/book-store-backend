@@ -12,6 +12,9 @@ public class StandardError {
     private String error;
     private String path;
 
+    public StandardError() {
+    }
+
     public StandardError(LocalDateTime timestemp, Integer status, String error, String path) {
         this.timestemp = timestemp;
         Status = status;
